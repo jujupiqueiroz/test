@@ -1,0 +1,22 @@
+<h1>- Tasks</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+   </tr>
+
+<% @tasks.each do |task| %>
+  <tr>
+    <td><%=h task.name %></td>
+    <td><%= link_to 'Show', project_task_url(@project, task) %></td>
+    <td><%= link_to 'Edit', edit_project_task_path(@project, task) %></td>
+    <td><%= link_to 'Destroy', project_task_url(@project, task), :confirm => 'Are you sure?', 
+    :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Create New Task', new_project_task_path(@project) %>
+<%= will_paginate @tasks %>

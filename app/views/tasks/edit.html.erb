@@ -1,0 +1,32 @@
+<h1>Editing task</h1>
+
+<% form_for [@project, @task] do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.label :difficulty %><br />
+    <%= f.select :difficulty, [["1", 1], ["2",2], ["3", 3]], :selected =>  @task.difficulty.to_i %>
+  </p>
+  <p>
+    <%= f.label :user %><br />
+    <%= f.select :user_id, User.find(:all).collect { |item| [item.name,item.id] } %>
+  </p>
+  <p>
+    <%= f.label :project %><br />
+    <%= f.select :project_id, Project.find(:all).collect { |item| [item.name,item.id] } %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', project_task_url(@project,@task) %> |
+<%= link_to 'Back', project_task_path %>
